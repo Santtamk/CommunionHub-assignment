@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 
-const Form = ({ formView, formSubmit, setEvents }) => {
+const Form = ({ formView, addEvent }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
-  const [id, setId] = useState(0);
 
   const finalForm = (e) => {
-    formSubmit(e);
-    setId(Math.random()); //to tackle key error in console
-    setEvents((prev) => [...prev, { id, title, date, category }]);
+    e.preventDefault();
+    const newEvent = {
+      id: Math.random().toString(36).substr(2, 9), // Generate unique ID
+      title,
+      date,
+      category,
+    };
+    addEvent(newEvent);
     formView();
   };
 
@@ -67,6 +71,7 @@ const Form = ({ formView, formSubmit, setEvents }) => {
             onChange={(e) => setCategory(e.target.value)}
             required
           >
+            <option value="">Select a category</option>
             <option value="Religious">Religious</option>
             <option value="Social">Social</option>
             <option value="Charity">Charity</option>
