@@ -25,10 +25,10 @@ const CardCom = ({ title, date, location, category }) => (
         <span className="">
           <FaCalendarAlt />
         </span>
-        <span className="text-base font-medium">{date} (time)</span>
+        <span className="text-base font-medium">{date}</span>
       </div>
       <div className="font-semibold text-gray-600">{location}</div>
     </div>
-  </Card> 
+  </Card>
 );
 export default CardCom;

@@ -4,51 +4,58 @@ const Form = ({ formView, formSubmit, setEvents }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
+  const [id, setId] = useState(0);
 
   const finalForm = (e) => {
     formSubmit(e);
-    setEvents((prev) => [...prev, { title, date, category }]);
+    setId(Math.random()); //to tackle key error in console
+    setEvents((prev) => [...prev, { id, title, date, category }]);
     formView();
   };
 
   return (
     <div className=" absolute inset-0  z-40 flex items-center justify-center backdrop-blur-xs backdrop-grayscale">
       <form
-        class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 backdrop-opacity-95"
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 backdrop-opacity-95"
         onSubmit={finalForm}
       >
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="title"
+          >
             Title
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="title"
             type="text"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </div>
-        <div class="mb-4">
+        <div className="mb-4">
           <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="password"
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
           >
             Date
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="event-time"
             type="datetime-local"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            required
           />
         </div>
-        <div class="mb-6">
+        <div className="mb-6">
           <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="password"
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
           >
             Category
           </label>
@@ -58,21 +65,21 @@ const Form = ({ formView, formSubmit, setEvents }) => {
             className="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
           >
             <option value="Religious">Religious</option>
             <option value="Social">Social</option>
             <option value="Charity">Charity</option>
           </select>
         </div>
-        <div class="flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <input
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
-            // onClick={() => formView()}
           />
 
           <button
-            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             onClick={() => formView()}
           >
             Cancel
